@@ -1,6 +1,7 @@
 # Use the official Python image from Docker Hub as the base image
 FROM python:3.11-slim
 
+# Ensure that Flask uses the correct version of Werkzeug
 RUN pip install werkzeug==2.1.0
 
 # Set the working directory inside the container
@@ -10,14 +11,12 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed dependencies specified in requirements.txt
+COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 5000 available to the outside world
 EXPOSE 5000
 
-# Define environment variable to tell Flask to run in production mode
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
 
 # Run the Flask app when the container starts
 CMD ["flask", "run"]
