@@ -8,7 +8,7 @@ RUN pip install werkzeug==2.1.0
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY . /app
+COPY app.py /app/app.py
 
 # Install any needed dependencies specified in requirements.txt
 COPY requirements.txt /app/requirements.txt
