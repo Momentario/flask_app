@@ -20,3 +20,9 @@ EXPOSE 5000
 
 # Run the Flask app when the container starts
 CMD ["flask", "run"]
+
+#This forces the flask run command to bind to 0.0.0.0.
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+
+# Ensure that the Dockerfile copies the templates/ directory into the Docker image.
+COPY ./templates /app/templates
