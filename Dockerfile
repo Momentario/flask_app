@@ -17,12 +17,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Make port 5000 available to the outside world
 EXPOSE 5000
 
+# Set environment variables for Flask
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=5000
 
 # Run the Flask app when the container starts
 CMD ["flask", "run"]
 
-#This forces the flask run command to bind to 0.0.0.0.
-#CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
-
-# Ensure that the Dockerfile copies the templates/ directory into the Docker image.
+# Ensure that the Dockerfile copies the templates/files into the Docker image.
 COPY ./templates /app/templates
+COPY ./static /app/static
